@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@keyframes fluir {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.anim-fluir {
+  animation: fluir 1.2s linear infinite;
+}
