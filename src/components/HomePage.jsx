@@ -1,6 +1,6 @@
 import AreaCard from './AreaCard'
 
-export default function HomePage({ areas, onSelecionarArea }) {
+export default function HomePage({ areas, onSelecionarArea, onAbrirLivros = () => {} }) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-50">
       {/* Fundo: aurora suave + grade técnica que desvanece */}
@@ -56,7 +56,7 @@ export default function HomePage({ areas, onSelecionarArea }) {
               🧊 Simulações 3D interativas
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-slate-600 shadow-sm backdrop-blur">
-              ⚡ Resultados em tempo real
+              📚 Clássicos para ler grátis
             </span>
           </div>
 
@@ -66,6 +66,59 @@ export default function HomePage({ areas, onSelecionarArea }) {
               <AreaCard key={area.id} area={area} onClick={() => onSelecionarArea(area.id)} />
             ))}
           </div>
+
+          {/* Banner da Biblioteca */}
+          <button
+            type="button"
+            onClick={onAbrirLivros}
+            className="group relative mt-8 flex w-full flex-col items-start gap-5 overflow-hidden rounded-3xl bg-gradient-to-r from-amber-500 via-rose-500 to-violet-600 p-8 text-left text-white shadow-xl shadow-rose-500/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-rose-500/30 focus:outline-none focus-visible:ring-4 focus-visible:ring-rose-300/60 active:scale-[0.99] sm:flex-row sm:items-center md:p-10"
+          >
+            {/* textura + brilhos */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.15] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_75%)]"
+              aria-hidden
+            />
+            <div className="pointer-events-none absolute -right-8 -top-10 h-40 w-40 rounded-full bg-white/20 blur-2xl transition-transform duration-500 group-hover:scale-125" aria-hidden />
+            <div
+              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+              aria-hidden
+            />
+
+            {/* ícone em vidro */}
+            <span
+              className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-4xl ring-1 ring-white/30 backdrop-blur transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+              aria-hidden
+            >
+              📚
+            </span>
+
+            {/* textos */}
+            <span className="relative flex-1">
+              <span className="block text-2xl font-extrabold tracking-tight md:text-3xl">
+                Biblioteca <span className="font-black">CiênciaLab</span>
+              </span>
+              <span className="mt-1.5 block max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
+                Clássicos científicos originais — Newton, Darwin, Boyle e mais. Leia direto no app com animação de página ou baixe o PDF, tudo de graça.
+              </span>
+              <span className="mt-3 flex flex-wrap gap-2">
+                <span className="rounded-full bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white/85 ring-1 ring-white/20">
+                  6 obras
+                </span>
+                <span className="rounded-full bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white/85 ring-1 ring-white/20">
+                  Domínio público
+                </span>
+                <span className="rounded-full bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white/85 ring-1 ring-white/20">
+                  PDF grátis
+                </span>
+              </span>
+            </span>
+
+            {/* botão */}
+            <span className="relative inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-sm font-bold ring-1 ring-white/25 backdrop-blur transition-colors duration-300 group-hover:bg-white/25">
+              Explorar livros
+              <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>→</span>
+            </span>
+          </button>
 
           <p className="mt-14 text-center text-sm text-slate-400">Feito para explorar · experimentar · aprender</p>
         </main>
